@@ -1,17 +1,18 @@
-# SAM template for CodeBuild
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
-Description: A simple AWS Lambda for searching book records within a DynamoDB table.
-Resources:
-  GetBooksFx:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: <RELATIVE_PATH_TO_YOUR_JAR>
-      Handler: <FULLY_QUALIFIED_PATH_TO_YOUR_HANDLER>
-      Runtime: java8.al2
-      Description: Java function
-      MemorySize: 256
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - arn:aws:iam::430213699949:policy/lambda-cloudformation
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn package
+      - sam package
+        --template-file sam-template.yml
+        --s3-bucket arn:aws:s3:::heraldofmechanus-cloud-formation-template-storage-bucket
+        --output-template-file packaged-template.yml
+
+artifacts:
+  files:
+    - packaged-template.yml
