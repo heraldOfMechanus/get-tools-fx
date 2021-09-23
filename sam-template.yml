@@ -6,7 +6,7 @@ Resources:
   GetBooksFx:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: /target/get-tools-fx-1.0.jar
+      CodeUri: target/get-tools-fx-1.0.jar
       Handler: com.autozone.fetch_tools.GetToolsHandler
       Runtime: java8.al2
       Description: Java function
