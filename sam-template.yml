@@ -14,4 +14,4 @@ Resources:
       Timeout: 30
       Tracing: Active
       Policies:
-        - arn:aws:s3:::heraldofmechanus-cloud-formation-template-storage-bucket
+        - arn:aws:iam::430213699949:policy/lambda-cloudformation
